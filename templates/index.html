@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Cash Tracker Mobile</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+</head>
+<body class="bg-light">
+
+  <div class="container py-4">
+    <h1 class="mb-4 text-center">Catat Pengeluaran</h1>
+
+    <!-- Form upload struk -->
+    <form method="POST" enctype="multipart/form-data" class="mb-3">
+      <div class="mb-3">
+        <label for="struk" class="form-label">Upload Foto Struk:</label>
+        <input class="form-control" type="file" id="struk" name="struk" accept="image/*" required>
+      </div>
+      <button type="submit" class="btn btn-primary w-100">Upload dan Ekstrak</button>
+    </form>
+
+    <hr>
+
+    <!-- Form input manual -->
+    <form method="POST" class="mb-4">
+      <div class="mb-3">
+        <input type="text" class="form-control" name="nama" placeholder="Nama Pengeluaran" required />
+      </div>
+      <div class="mb-3">
+        <input type="number" step="0.01" class="form-control" name="jumlah" placeholder="Jumlah (Rp)" required />
+      </div>
+      <button type="submit" class="btn btn-success w-100">Tambah</button>
+    </form>
+
+    <h2 class="mb-3">Daftar Pengeluaran</h2>
+    <ul class="list-group mb-3">
+      {% for row in data %}
+      <li class="list-group-item d-flex justify-content-between align-items-center">
+        <div>
+          <strong>{{ row[1] }}</strong> : {{ row[2] }}
+        </div>
+        <div>
+          <a href="{{ url_for('edit', id=row[0]) }}" class="btn btn-sm btn-warning me-1">Edit</a>
+          <a href="{{ url_for('delete', id=row[0]) }}" onclick="return confirm('Yakin ingin hapus?')" class="btn btn-sm btn-danger">Hapus</a>
+        </div>
+      </li>
+      {% else %}
+      <li class="list-group-item text-center">Belum ada pengeluaran</li>
+      {% endfor %}
+    </ul>
+
+    <h3 class="text-end">Total: {{ total }}</h3>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

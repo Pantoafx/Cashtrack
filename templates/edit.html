@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Edit Pengeluaran</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+</head>
+<body class="bg-light">
+
+  <div class="container py-4">
+    <h1 class="mb-4 text-center">Edit Pengeluaran</h1>
+
+    <form method="POST">
+      <div class="mb-3">
+        <label for="nama" class="form-label">Nama Pengeluaran</label>
+        <input type="text" class="form-control" id="nama" name="nama" value="{{ row[1] }}" required />
+      </div>
+      <div class="mb-3">
+        <label for="jumlah" class="form-label">Jumlah (Rp)</label>
+        <input type="number" step="0.01" class="form-control" id="jumlah" name="jumlah" value="{{ row[2] }}" required />
+      </div>
+      <button type="submit" class="btn btn-primary w-100">Simpan</button>
+      <a href="{{ url_for('index') }}" class="btn btn-secondary w-100 mt-2">Batal</a>
+    </form>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
